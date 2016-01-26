@@ -18,11 +18,30 @@ App = React.createClass({
   },
 
   render() {
+    let formMeta = {
+      "user_id": "integer",
+      "user_status": "integer",
+      "user_login": "text",
+      "user_email": "email",
+      "displayName": "text",
+      "firstName": "text",
+      "middleInitial": "text",
+      "lastName": "text",
+      "suffix": "text",
+      "address1": "text",
+      "city": "text",
+      "state": "text",
+      "zIPPostalCode": "text",
+      "country": "text",
+      "phone": "text",
+      "email": "email"
+    };
+
     return (
       <div className="container">
         <header>
           <h1>Profile Form</h1>
-          <ProfileForm />
+          <ProfileForm formMeta={formMeta}/>
         </header>
 
         <h2>Search</h2>
