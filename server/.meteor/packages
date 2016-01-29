@@ -21,3 +21,6 @@ insecure                # Allow all DB writes from clients (for prototyping)
 nimble:restivus
 react
 timbrandin:fetch
+aldeed:autoform
+twbs:bootstrap
+meson:electron

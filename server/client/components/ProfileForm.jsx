@@ -1,21 +1,34 @@
 ProfileForm = React.createClass({
-  handleSubmit(event) {
-      event.preventDefault();
-      // Find the text field via the React ref
-      var text = this.refs.firstName.value;
-      console.log(this.refs);
-      alert(text);
+
+  componentDidMount() {
+    this.view = Blaze.renderWithData(Template.quickForm, this.props, ReactDOM.findDOMNode(this.refs.container));
   },
 
+  componentWillUnmount() {
+    Blaze.remove(this.view);
+  },
 
   render() {
     return (
-        <form className="form-profile" onSubmit={this.handleSubmit} >
-          <input type="text" ref="user_id" placeholder="Type user id" />
-          <input type="text" ref="firstName" placeholder="Type first name" />
-          <input type="text" ref="lastName" placeholder="Type last name" />
-          <input type="submit" value="Save Profile" />
-        </form>
-        );
+      <span ref="container" />
+    )
   }
 });
+
+/*
+EditProfile = React.createClass({
+  componentDidMount() {
+    this.view = Blaze.renderWithData(Template.quickForm, { id: "profileForm", type: "insert"}, React.findDOMNode(this.refs.container));
+  },
+
+  componentWillUnmount() {
+    Blaze.remove(this.view);
+  },
+
+  render() {
+    return (
+      <span ref="container" />
+    )
+  }
+});
+*/

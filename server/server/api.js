@@ -4,6 +4,13 @@ var Api = new Restivus({
   prettyJson: true
 });
 
+Api.addRoute('profiles/user/', {authRequired: false}, {
+  post: function () {
+    console.log(this.bodyParams);
+    return Profiles.insert(this.bodyParams);
+  }
+});
+
 // Maps to: /api/profiles/
 Api.addRoute('profiles/user/:id', {authRequired: false}, {
   get: function () {

@@ -10,6 +10,14 @@ App = React.createClass({
     };
   },
 
+  handleSubmit(doc) {
+      // Find the text field via the React ref
+      var text = 'handleSubmit';
+      console.log(doc);
+      alert(text);
+      return false;
+  },
+
   renderProfiles() {
     // Get profiles from this.data.profiles
     return this.data.profiles.map((profile) => {
@@ -18,30 +26,57 @@ App = React.createClass({
   },
 
   render() {
-    let formMeta = {
-      "user_id": "integer",
-      "user_status": "integer",
-      "user_login": "text",
-      "user_email": "email",
-      "displayName": "text",
-      "firstName": "text",
-      "middleInitial": "text",
-      "lastName": "text",
-      "suffix": "text",
-      "address1": "text",
-      "city": "text",
-      "state": "text",
-      "zIPPostalCode": "text",
-      "country": "text",
-      "phone": "text",
-      "email": "email"
-    };
+    var Schemas = {};
+    Schemas.Profile = new SimpleSchema({
+      user_id: {
+        type: Number,
+        optional: false,
+        label: "User ID"
+      },
+      user_status: {
+        type: Number,
+        optional: true,
+        label: "User Status"
+      },
+      user_login: {
+        type: String,
+        label: "User Login"
+      },
+      user_email: {
+        type: String,
+        label: "User Email"
+      },
+      displayName: {
+        type: String,
+        optional: false,
+        label: "Display Name"
+      },
+      firstName: {
+        type: String,
+        optional: false,
+        label: "First Name"
+      },
+      //"middleInitial": "text",
+      lastName: {
+        type: String,
+        optional: false,
+        label: "Last name"
+      }
+      //"suffix": "text",
+      //"address1": "text",
+      ///"city": "text",
+      //"state": "text",
+      //"zIPPostalCode": "text",
+      //"country": "text",
+      //"phone": "text",
+      //"email": "email"
+    });
 
     return (
       <div className="container">
         <header>
           <h1>Profile Form</h1>
-          <ProfileForm formMeta={formMeta}/>
+          <ProfileForm id="editProfileForm" schema={Schemas.Profile}  action="/api/profiles/user" method="post" onsubmit={this.handleSubmit} />
         </header>
 
         <h2>Search</h2>
